@@ -28,3 +28,4 @@
 - name: Report Meteodata in a cronjob
   cron: minute="*/15"
         job="cd /home/{{ ansible_user }}/pi-station; ruby bin/pi-station report --serial /dev/ttyACM0 --url http://es.neckhair.ch/measurements/temperature"
+        name="Report Meteo Data"
