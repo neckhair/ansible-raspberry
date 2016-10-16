@@ -1,5 +1,5 @@
 - name: Copy my SSH key
-  copy: src="~/.ssh/id_rsa.pub" dest="/home/{{ ansible_user }}/.ssh/authorized_keys"
+  authorized_key: user="{{ ansible_user }}" key="https://github.com/neckhair.keys"
 
 - name: Disable Edimax WLAN Powersave mode
   copy: dest=/etc/modprobe.d/8192cu.conf content="options 8192cu rtw_power_mgnt=0 rtw_enusbss=0" owner=root group=root
