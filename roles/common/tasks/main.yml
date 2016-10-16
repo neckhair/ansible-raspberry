@@ -1,17 +1,27 @@
 - name: Copy my SSH key
-  authorized_key: user="{{ ansible_user }}" key="https://github.com/neckhair.keys"
+  authorized_key:
+    user: "{{ ansible_user }}"
+    key:  "https://github.com/neckhair.keys"
 
 - name: Disable Edimax WLAN Powersave mode
-  copy: dest=/etc/modprobe.d/8192cu.conf content="options 8192cu rtw_power_mgnt=0 rtw_enusbss=0" owner=root group=root
   become: True
+  copy:
+    dest: /etc/modprobe.d/8192cu.conf
+    content: "options 8192cu rtw_power_mgnt=0 rtw_enusbss=0"
+    owner: root
+    group: root
 
 - name: apt-get update
   become: True
-  apt: update_cache=yes cache_valid_time=3600
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: Install common packages
   become: True
-  apt: name={{item}} state=installed
+  apt:
+    name: "{{ item }}"
+    state: installed
   with_items:
     - bundler
     - git
@@ -19,13 +29,3 @@
     - ruby
     - unattended-upgrades
     - vim
-
-- name: Download pi-station sources
-  git: repo=https://github.com/neckhair/pi-station.git
-       dest=/home/{{ ansible_user }}/pi-station
-- name: Install pi-station dependencies
-  bundler: state=present deployment_mode=yes chdir=/home/{{ ansible_user }}/pi-station
-- name: Report Meteodata in a cronjob
-  cron: minute="*/15"
-        job="cd /home/{{ ansible_user }}/pi-station; ruby bin/pi-station report --serial /dev/ttyACM0 --url http://es.neckhair.ch/measurements/temperature"
-        name="Report Meteo Data"

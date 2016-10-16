@@ -1,0 +1,23 @@
+- name: Install required packages
+  become: True
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - bundler
+    - git
+    - ruby
+- name: Download pi-station sources
+  git:
+    repo: https://github.com/neckhair/pi-station.git
+    dest: /home/{{ ansible_user }}/pi-station
+- name: Install pi-station dependencies
+  bundler:
+    state: present
+    deployment_mode: yes
+    chdir: /home/{{ ansible_user }}/pi-station
+- name: Report Meteodata in a cronjob
+  cron:
+    minute: "*/15"
+    job: "cd /home/{{ ansible_user }}/pi-station; ruby bin/pi-station report --serial /dev/ttyACM0 --url http://es.neckhair.ch/measurements/temperature"
+    name: "Report Meteo Data"
