@@ -1,0 +1,14 @@
+---
+- name: Disable Edimax WLAN Powersave mode
+  become: True
+  copy:
+    dest: /etc/modprobe.d/8192cu.conf
+    content: "options 8192cu rtw_power_mgnt=0 rtw_enusbss=0"
+    owner: root
+    group: root
+
+- name: Copy Wifi config in place
+  become: True
+  template:
+    src: wifi-config.j2
+    dest: /etc/wpa_supplicant/wpa_supplicant.conf

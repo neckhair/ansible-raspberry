@@ -4,14 +4,6 @@
     user: "{{ ansible_user }}"
     key:  "https://github.com/neckhair.keys"
 
-- name: Disable Edimax WLAN Powersave mode
-  become: True
-  copy:
-    dest: /etc/modprobe.d/8192cu.conf
-    content: "options 8192cu rtw_power_mgnt=0 rtw_enusbss=0"
-    owner: root
-    group: root
-
 - name: apt-get update
   become: True
   apt:
@@ -31,4 +23,5 @@
     - unattended-upgrades
     - vim
 
+- include: wifi.yml
 - include: camera.yml
