@@ -1,0 +1,15 @@
+---
+- name: Enable camera
+  become: True
+  lineinfile:
+    dest: /boot/config.txt
+    backup: yes
+    regexp: "^start_x="
+    line: "start_x=1"
+
+- name: Require RAM for camera
+  become: True
+  lineinfile:
+    dest: /boot/config.txt
+    regexp: "^gpu_mem="
+    line: "gpu_mem=128"

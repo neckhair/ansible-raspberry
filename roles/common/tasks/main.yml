@@ -1,3 +1,4 @@
+---
 - name: Copy my SSH key
   authorized_key:
     user: "{{ ansible_user }}"
@@ -29,3 +30,5 @@
     - ruby
     - unattended-upgrades
     - vim
+
+- include: camera.yml
