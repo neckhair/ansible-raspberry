@@ -4,3 +4,7 @@
   roles:
     - common
     - pi_station
+
+  vars:
+    common_desktop: true
+    common_arduino: true

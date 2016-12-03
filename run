@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export ANSIBLE_SSH_PIPELINING=1
+ansible-playbook -i hosts site.yml --vault-password-file=.vault_pass.txt --diff
