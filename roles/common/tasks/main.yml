@@ -22,6 +22,7 @@
     - ruby
     - unattended-upgrades
     - vim
+    - wiringpi # gpio command
 
 - include: wifi.yml
 - include: camera.yml
