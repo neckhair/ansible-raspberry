@@ -1,0 +1,11 @@
+[user]
+	email = phil@neckhair.ch
+	name = Philippe Hässig
+[push]
+	default = simple
+[core]
+	editor = vim
+[alias]
+	co = checkout
+	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	s = status -s
