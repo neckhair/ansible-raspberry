@@ -1,0 +1,31 @@
+######################################################################
+# This will need the RealVNC VNC Viewer on the Mac:
+# `brew cask install vnc-viewer`
+######################################################################
+---
+- name: Force screen resolution (width)
+  become: true
+  lineinfile:
+    dest: "/boot/config.txt"
+    line: "framebuffer_width=1600"
+    regexp: '^(#)?framebuffer_width=\d*'
+
+- name: Force screen resolution (height)
+  become: true
+  lineinfile:
+    dest: "/boot/config.txt"
+    line: "framebuffer_height=900"
+    regexp: '^(#)?framebuffer_height=\d*'
+
+- name: Install VNC Server
+  become: true
+  package:
+    name: realvnc-vnc-server
+    state: present
+
+- name: Start VNC server
+  become: true
+  service:
+    name: vncserver-x11-serviced
+    enabled: true
+    state: started

@@ -6,5 +6,6 @@
     - pi_station
 
   vars:
-    common_desktop: true
-    common_arduino: true
+    common_desktop: false
+    common_vnc: true
+    common_arduino: false

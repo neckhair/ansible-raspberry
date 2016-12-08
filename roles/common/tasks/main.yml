@@ -29,5 +29,7 @@
 - include: camera.yml
 - include: desktop.yml
   when: common_desktop
+- include: vnc.yml
+  when: common_vnc
 - include: arduino.yml
   when: common_arduino and common_desktop

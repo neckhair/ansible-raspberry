@@ -3,7 +3,6 @@
   become: True
   lineinfile:
     dest: /boot/config.txt
-    backup: yes
     regexp: "^start_x="
     line: "start_x=1"
 

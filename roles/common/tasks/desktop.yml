@@ -1,8 +1,3 @@
-######################################################################
-# Install a Desktop environment on the Raspberry by. Connect via VNC.
-# This will need the RealVNC VNC Viewer on the Mac:
-# `brew cask install vnc-viewer`
-######################################################################
 ---
 - name: Install XServer
   become: true
@@ -11,20 +6,6 @@
   with_items:
     - xserver-xorg
     - xinit
-
-- name: Force screen resolution (width)
-  become: true
-  lineinfile:
-    dest: "/boot/config.txt"
-    line: "framebuffer_width=1280"
-    regexp: '^(#)?framebuffer_width=\d*'
-
-- name: Force screen resolution (height)
-  become: true
-  lineinfile:
-    dest: "/boot/config.txt"
-    line: "framebuffer_height=720"
-    regexp: '^(#)?framebuffer_height=\d*'
 
 - name: Install a login manager
   become: true
@@ -38,19 +19,6 @@
   with_items:
     - lxde-core
     - lxappearance
-
-- name: Install VNC Server
-  become: true
-  package:
-    name: realvnc-vnc-server
-    state: present
-
-- name: Start VNC server
-  become: true
-  service:
-    name: vncserver-x11-serviced
-    enabled: true
-    state: started
 
 - name: Boot into desktop mode
   become: true
