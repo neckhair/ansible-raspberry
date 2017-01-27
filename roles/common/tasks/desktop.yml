@@ -26,3 +26,8 @@
     dest: /etc/systemd/system/default.target
     src: /lib/systemd/system/graphical.target
     state: link
+
+- name: Install Arduino Studio
+  package:
+    name: arduino
+    state: present

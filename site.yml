@@ -7,5 +7,4 @@
 
   vars:
     common_desktop: false
-    common_vnc: true
-    common_arduino: false
+    common_vnc: false

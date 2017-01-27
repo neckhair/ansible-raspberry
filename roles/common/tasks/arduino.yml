@@ -1,5 +1,0 @@
----
-- name: Install Arduino Studio
-  package:
-    name: arduino
-    state: present

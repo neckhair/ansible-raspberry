@@ -10,6 +10,11 @@
     update_cache: yes
     cache_valid_time: 86400 # once a day
 
+- name: Make sure locale is present
+  become: True
+  locale_gen:
+    name: de_CH.UTF-8
+
 - name: Install common packages
   become: True
   apt:
@@ -31,5 +36,3 @@
   when: common_desktop
 - include: vnc.yml
   when: common_vnc
-- include: arduino.yml
-  when: common_arduino and common_desktop
