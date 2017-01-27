@@ -4,6 +4,11 @@
     src: vimrc
     dest: "{{ ansible_env.HOME }}/.vimrc"
 
+- name: Package manager for VIM
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: /home/pi/.vim/bundle/Vundle.vim
+
 - name: Copy gitconfig in place
   copy:
     src: gitconfig

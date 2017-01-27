@@ -1,7 +1,25 @@
 syntax on
-filetype indent plugin on
+filetype off
+set nocompatible
 
-set tabstop=8
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+  " let Vundle manage Vundle, required
+  Plugin 'VundleVim/Vundle.vim'
+  Plugin 'python-mode/python-mode'
+call vundle#end()            " required
+
+filetype plugin indent on    " required
+
+set number
+set autoindent
+set tabstop=4
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set showmatch
+
+" enable all Python syntax highlighting features
+let python_highlight_all = 1

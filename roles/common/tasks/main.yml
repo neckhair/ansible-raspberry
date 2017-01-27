@@ -27,6 +27,7 @@
     - ruby
     - unattended-upgrades
     - vim
+    - vim-nox # for python support
     - wiringpi # gpio command
 
 - include: configurations.yml
@@ -36,3 +37,4 @@
   when: common_desktop
 - include: vnc.yml
   when: common_vnc
+- include: python.yml
