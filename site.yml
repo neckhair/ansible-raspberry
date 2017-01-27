@@ -3,7 +3,6 @@
 
   roles:
     - common
-    - pi_station
 
   vars:
     common_desktop: false
