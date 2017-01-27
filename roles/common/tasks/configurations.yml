@@ -24,3 +24,9 @@
     dest: "{{ ansible_env.HOME }}/.profile"
     line: 'export EDITOR="$VISUAL"'
 
+- name: Enable SPI Interface
+  become: True
+  lineinfile:
+    dest: /boot/config.txt
+    regexp: "^dtparam=spi"
+    line: "dtparam=spi=on"
